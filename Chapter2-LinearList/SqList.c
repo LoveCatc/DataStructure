@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef int Status;
 
@@ -31,3 +32,32 @@ Status GetElem(SqList L, int i, ElemType e){
     return OK;
 }
 
+int LocateElem(SqList L, ElemType e){
+    int i;
+    for (i=0; i<L.length; i++){
+        if (!(strcmp(L.base_addr[i-1].elem_name, e.elem_name)) && L.base_addr[i].elem_value == e.elem_value) return i+1;
+    }
+    return 0;
+}
+
+Status InsertElem(SqList L, int i, ElemType e){
+    if (i<1 || i>(L.length+1)) return ERROR;
+    if (L.length == MAXSIZE) return OVERFLOW;
+    int j;
+    for (j=L.length-1; j>=i; j--){
+        L.base_addr[j+1] = L.base_addr[j];
+    }
+    L.base_addr[i-1] = e;
+    L.length++;
+    return OK;
+}
+
+Status DeleteElem(SqList L, int i){
+    if (i<1 || i>L.length) return ERROR;
+    int j;
+    for (j=i; j<L.length; j++){
+        L.base_addr[j-1] = L.base_addr[j];
+    }
+    L.length--;
+    return OK;
+}
