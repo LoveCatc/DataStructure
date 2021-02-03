@@ -58,3 +58,26 @@ Status InsertElem(ListNode *L, int i, ElemType e){
     new_node->data = e;
     return OK;
 }
+
+Status CreateListH(ListNode *L, int n){
+    L = (ListNode *)calloc(1, sizeof(ListNode));
+    int i;
+    for (i=0; i<n; i++){
+        ListNode *new_node = (ListNode *)calloc(1, sizeof(ListNode));
+        new_node->next = L->next;
+        L->next = new_node;
+    }
+    return OK;
+}
+
+Status CreateListR(ListNode *L, int n){
+    L = (ListNode *)calloc(1, sizeof(ListNode));
+    int i;
+    ListNode *r = L;    //r points to the last node
+    for (i=0; i<n; i++){
+        ListNode *new_node = (ListNode *)calloc(1, sizeof(ListNode));
+        r->next = new_node;
+        new_node->next = NULL;
+    }
+    return OK;
+}
