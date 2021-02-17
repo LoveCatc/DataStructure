@@ -14,6 +14,8 @@ typedef struct SqList{
     int length;
 }SqList;
 
+// # Need Fix
+
 // 初始化一个顺序表
 Status Init(SqList L){
     L.base_addr = (SqList *)calloc(MAXSIZE, sizeof(ElemType));
